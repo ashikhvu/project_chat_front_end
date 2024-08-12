@@ -1,0 +1,298 @@
+
+.home-card{
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.405);
+    width: 100vw;
+    height: 100vh;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    background-attachment: fixed;
+}
+.profile-pic1{
+    border-radius: 50vh;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0.5rem 0;
+}
+.profile-pic2{
+    border-radius: 50vh;
+    width: 2.3rem;
+    height: 2.3rem;
+    margin: 0.5rem 0;
+}
+.profile-pic3{
+    border-radius: 50vh;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.5rem 0;
+}
+.profile-pic4{
+    border-radius: 50vh;
+    width: 4rem;
+    height: 4rem;
+    margin: 0.5rem 0;
+}
+.profile-pic5{
+    border-radius: 50vh;
+    width: 10rem;
+    height: 10rem;
+    margin: 0.5rem 0;
+    transition: all 0.2s ease;
+}
+.profile-pic5:hover{
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+.profile-pic6{
+    border-radius: 50vh;
+    width: 15rem;
+    height: 15rem;
+    margin: 0.5rem 0;
+    transition: all 0.2s ease;
+    border: 1px solid white;
+    padding: 1rem;
+}
+.border-right{
+    border-right: 1px solid rgba(255, 255, 255, 0.101);
+}
+.border-bottom{
+    border-bottom: 1px solid red;
+}
+.custom-pad1{
+    padding-left: 0.9rem;
+    padding-top: 1.2rem;
+}
+.custom-pad2{
+    padding-left: 1.8rem;
+}
+.search-bar{
+    background-color: black;
+    outline: none;
+    border: 1px solid rgb(79, 79, 79);
+    border-radius: 7px;
+    width: 100%;
+    font-weight: 300;
+    font-size: 0.8rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+.search-bar2{
+    background-color: rgba(0, 0, 0, 0.607);
+    outline: none;
+    border: 1px solid rgb(79, 79, 79);
+    border-radius: 7px;
+    width: 100%;
+    font-weight: 300;
+    font-size: 0.8rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    height: 2.2rem;
+}
+.custom-add-button{
+    background-color: rgb(54, 54, 54);
+    border: none;
+    border-radius: 5px;
+    transition: all 0.1s linear;
+}
+.custom-add-button:hover{
+    background-color: rgb(40, 40, 40);
+}
+.custom-add-button:active{
+    background-color: rgb(76, 76, 76);
+}
+.hr-0{
+    padding: 0;
+    margin: 0;
+}
+.contact-content{
+    padding-top: 0.55rem;
+    padding-left: 0.7rem;
+}
+.contact-title1{
+    font-size: 0.9rem;
+    padding: 0;
+    margin: 0;
+}
+.contact-title2{
+    font-size: 0.7rem;
+    padding: 0;
+    padding-top: 0.25rem;
+    margin: 0;
+}
+
+
+.contact-content2{
+    padding-top: 0.7rem;
+    padding-left: 0.7rem;
+}
+.contact-title3{
+    font-size: 0.9rem;
+    padding: 0;
+    margin: 0;
+}
+.contact-title4{
+    font-size: 0.7rem;
+    padding: 0;
+    padding-top: 0.25rem;
+    margin: 0;
+}
+.contact-overflow{
+    overflow-y: auto;
+    height: 77vh;
+}
+.chat-overflow{
+    overflow-y: auto;
+    height: 80vh;
+}
+.option-overflow{
+    overflow-y: auto;
+    height: 56vh;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+
+.ChatRight-msg{
+    background-color: rgb(0, 81, 255);
+    padding: 0.6rem 1rem 0.3rem 1rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+.ChatRight-msg-text{
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+.ChatRight-time{
+    font-weight: 400;
+    font-size: 0.7rem;
+    padding: 0.2rem 0 0 0 ;
+}
+
+.ChatLeft-msg{
+    background-color: rgba(51, 51, 51, 0.713);
+    padding: 0.6rem 1rem 0.3rem 1rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+.ChatLeft-msg-text{
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+.ChatLeft-time{
+    font-weight: 400;
+    font-size: 0.7rem;
+    padding: 0.2rem 0 0 0 ;
+}
+.ChatLeft-img{
+    padding-right: 0.7rem;
+}
+.camera-icon-padding{
+    padding: 0.08rem;
+}
+.mic-icon-padding{
+    padding: 0.08rem;
+}
+.cam-icon-size{
+    font-size: 1rem;
+}
+.chat-send-btn{
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.3rem 1rem;
+}
+.chat-send-btn:hover{
+    background-color: rgb(0, 0, 182);
+}
+.chat-send-btn:active{
+    background-color: rgb(0, 0, 124);
+}
+.custom-width1{
+    width: 80%;
+}
+.custom-btn-2-blue{
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+.custom-btn-2-blue:hover{
+    background-color: rgb(0, 0, 192);
+}
+.custom-btn-2-blue:active{
+    background-color: rgb(2, 2, 142);
+}
+.custom-btn-2-red{
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+.custom-btn-2-red:hover{
+    background-color: rgb(186, 0, 0);
+}
+.custom-btn-2-red:active{
+    background-color: rgb(150, 0, 0);
+}
+.custom-btn-3-blue{
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem;
+}
+.custom-btn-3-blue:hover{
+    background-color: rgb(0, 0, 192);
+}
+.custom-btn-3-blue:active{
+    background-color: rgb(2, 2, 142);
+}
+.fsize-1{
+    font-size: 0.9rem;
+}
+.fsize-2{
+    font-size: 2.5rem;
+}
+.plain-btn{
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+.plain-input{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+}
+.red-text{
+    color: red;
+    cursor: pointer;
+    user-select: none;
+}
+.red-text:hover{
+    color: rgb(177, 0, 0);
+}
+.red-text:active{
+    color: rgb(255, 0, 0);
+}
+.badge-my{
+    padding: 0.2rem 0.4rem;
+    padding-bottom: 0.3rem;
+    border-radius: 50%;
+}
+.user_set{
+    background-color: rgb(36, 36, 36);
+    padding: 0.1rem 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}

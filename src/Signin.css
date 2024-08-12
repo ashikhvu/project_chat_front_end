@@ -1,0 +1,86 @@
+.card-bg{
+    backdrop-filter: blur('10px');
+    color: white;
+    /* background-color: rgba(0, 0, 0, 0.371); */
+}
+.form-card{
+    /* border: 1px solid rgb(192, 192, 192); */
+    /* border-radius: 5px; */
+    padding: 1rem;
+}
+.input-bg{
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    margin-top: -1.5rem;
+    margin-left: -1rem;
+}
+.input-bg:focus{
+    outline: none;
+}
+
+
+.input-container {
+    position: relative;
+    margin: 20px;
+  }
+  
+  /* Styles for the input field */
+  .input-bg {
+    width: 100%;
+    padding: 10px;
+    padding-top: 20px; /* Make space for the placeholder to move */
+    /* border: 1px solid #ccc; */
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+  }
+  
+  /* Styles for the placeholder text */
+  .input-bg::placeholder {
+    color: white; /* Make the placeholder text initially transparent */
+  }
+  
+  /* Moving placeholder effect when input is focused or contains text */
+  .input-bg:focus::placeholder,
+  .input-bg:not(:placeholder-shown)::placeholder {
+    position: absolute;
+    top: 5px; /* Move placeholder above the input */
+    left: 10px; /* Adjust left position */
+    font-size: 12px; /* Make placeholder text smaller */
+    color: #ffffff; /* Change color of the placeholder text */
+    transition: all 0.3s ease; /* Smooth transition */
+  }
+
+  /* .place-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+.color-footer{
+    color: rgb(255, 128, 0);
+    background-color: rgba(0, 0, 0, 0.53);
+}
+.color-footer-bg{
+    background-color: rgb(194, 97, 0);
+    color: white;
+}
+.color-footer-bg:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(225, 113, 0);
+}
+.ts{
+    text-shadow: 0px 0px 2px black;
+}
+.shadow-bg{
+    background-color: rgba(0, 0, 0, 0.405);
+}
+.test-color{
+    background-color: #00ffe5;
+}
+.signup_overflow{
+    overflow-y: auto;
+    height: 57vh;
+}

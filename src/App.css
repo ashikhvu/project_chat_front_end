@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+body{
+  background-image: url('/home/user/django_projects/project_chat/client/myapp/src/images/wallpaper1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
