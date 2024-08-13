@@ -254,6 +254,22 @@
 .custom-btn-3-blue:active{
     background-color: rgb(2, 2, 142);
 }
+
+.custom-btn-3-red{
+    background-color: rgb(232, 116, 0);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem;
+}
+.custom-btn-3-red:hover{
+    background-color: rgb(192, 109, 0);
+}
+.custom-btn-3-red:active{
+    background-color: rgb(162, 88, 4);
+}
 .fsize-1{
     font-size: 0.9rem;
 }
@@ -295,4 +311,8 @@
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
+}
+/* position */
+.pos_rel{
+    position: relative;
 }

@@ -46,6 +46,10 @@ const Home=()=>{
     const [chat_header_image, set_chat_header_image] = useState('')
     const [chat_header_about, set_chat_header_about] = useState(null)
 
+    const [request_status,set_request_status] = useState(true)
+
+    const [contact_set,set_contact_set] = useState('all')
+
     const LogoutUser=()=>{
         localStorage.removeItem('auth_token')
         navigate('/')
@@ -78,7 +82,10 @@ const Home=()=>{
             input_contact.current.value = res.data.contact
         })
         .catch((error)=>{
-            console.log(error)
+            if(error.data)
+            {
+                console.log(error.data)
+            }
         })
     }
 
@@ -90,56 +97,66 @@ const Home=()=>{
         }
 
         axios.get(`${config.baseurl}/get_all_user_data`,{headers:headers})
-        .then((res)=>{
-            if(res.data.error)
-            {
-                alert('No Users Are Available')
-                toast.info('No Users Are Available!', {
-                    position: "top-center",
-                    autoClose: 2000,
-                    theme: "dark",
-                    });
-            }   
-            else{
-                console.log(res.data)
-                setAlluser(res.data)
-                set_chat_header_data(res.data[0])
-                set_chat_header_name(`${res.data[0].name}`)
-                set_chat_header_image(`${res.data[0].image}`)
-                set_chat_header_about(`${res.data[0].about}`)
-            }
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
-    }
-
-    const handleSearch=()=>{
-        const token = localStorage.getItem('auth_token')
-        const headers = {
-            "Authorization" : `Token ${token}`
+            .then((res)=>{
+                if(res.data.error)
+                {
+                    alert('No Users Are Available')
+                    toast.info('No Users Are Available!', {
+                        position: "top-center",
+                        autoClose: 2000,
+                        theme: "dark",
+                        });
+                }   
+                else{
+                    console.log(res.data)
+                    setAlluser(res.data)
+                    set_chat_header_data(res.data[0])
+                    set_chat_header_name(`${res.data[0].name}`)
+                    set_chat_header_image(`${res.data[0].image}`)
+                    set_chat_header_about(`${res.data[0].about}`)
+                    // getting request status of the first contact when the page is first load
+                    const element = document.getElementsByClassName('contact_id')
+                    if(element.length>0)
+                    {
+                        element[0].click();
+                    }
+                }
+            })
+            .catch((error)=>{
+                if(error.data)
+                {
+                    console.log(error.data)
+                    
+                }
+            })
         }
 
-        axios.get(`${config.baseurl}/search_user?search_text=${input_search.current.value}`,{headers:headers})
-        .then((res)=>{
-            if(res.data.error)
-            {
-                alert('No Users are available with that Name.')
+        const handleSearch=()=>{
+            const token = localStorage.getItem('auth_token')
+            const headers = {
+                "Authorization" : `Token ${token}`
             }
-            else{
-                console.log(res.data)
-                setAlluser(res.data)
-            }
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
-    }
-
-    useEffect(()=>{
-        FecthData();
-        FecthAllData();
-        // if(info){
+    
+            axios.get(`${config.baseurl}/search_user?search_text=${input_search.current.value}`,{headers:headers})
+            .then((res)=>{
+                if(res.data.error)
+                {
+                    alert('No Users are available with that Name.')
+                }
+                else{
+                    console.log(res.data)
+                    setAlluser(res.data)
+                }
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+        }
+        
+        useEffect(()=>{
+            FecthData();
+            FecthAllData();
+            // if(info){
         //     document.getElementsByClassName('info-hider').classList = '';
         //     console.log('info');
         // }
@@ -176,32 +193,37 @@ const Home=()=>{
                             <button className="custom-add-button ms-2 mt-2 px-2" style={{paddingBottom:'0.25rem'}}><Icons.Plus color="white"/></button>
                         </div>
                     </div>
-                    {/* <div className="d-flex"> */}
-                        <div className="row m-0 p-0 mt-2">
-                            <div className="col">
-                                <div className="user_set"><small>All</small></div>
-                            </div>
-                            <div className="col">
-                                <div className="user_set"><small>Requests</small></div>
-                            </div>
-                            <div className="col">
-                                <div className="user_set"><small>Blocked</small></div>
-                            </div>
+
+                    <div className="row m-0 p-0 mt-2">
+                        <div className="col">
+                            <div className="user_set" onClick={()=>{set_contact_set('all')}}><small>All</small></div>
                         </div>
-                        {/* <div className="user_set me-2"><small>All</small></div>
-                        <div className="user_set me-2"><small>Requests</small></div>
-                        <div className="user_set"><small>Blocked</small></div> */}
-                    {/* </div> */}
+                        <div className="col">
+                            <div className="user_set" onClick={()=>{set_contact_set('requests')}}><small>Requests</small></div>
+                        </div>
+                        <div className="col">
+                            <div className="user_set"onClick={()=>{set_contact_set('blocked')}}><small>Blocked</small></div>
+                        </div>
+                    </div>
+                    
                     <div className="mt-3">
                         <div className="contact-overflow">
                             {alluser? alluser && alluser.map((i)=>(
                                 <div key={i.id}>
-                                    <UserContext.Provider value={{chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about}}>
+                                    <UserContext.Provider value={{contact_set,set_contact_set,chat,setChat,user_data, setUserData,request_status,set_request_status,chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about}}>
                                         <Contact 
                                             id={i.id} 
                                             name={i.name} 
                                             about={i.about} 
                                             image={i.image}
+                                            contact_set={contact_set}
+                                            set_contact_set={set_contact_set}
+                                            chat={chat}
+                                            setChat={setChat}
+                                            user_data={user_data} 
+                                            setUserData={setUserData}
+                                            request_status={request_status}
+                                            set_request_status={set_request_status}
                                             chat_header_data={chat_header_data}
                                             set_chat_header_data={set_chat_header_data}
                                             chat_header_name={chat_header_name}
@@ -239,9 +261,16 @@ const Home=()=>{
                     <MyModal2 show1={show1} setShow1={setShow1} Icons={Icons}/>
 
                     { chat? 
-                    <UserContext.Provider value={{user_data,chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about}}>
+                    <UserContext.Provider value={{contact_set,set_contact_set,chat,setChat,request_status,set_request_status,user_data, setUserData,chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about}}>
                         <ChatSection 
+                            contact_set={contact_set}
+                            set_contact_set={set_contact_set}
+                            chat={chat}
+                            setChat={setChat}
+                            request_status={request_status}
+                            set_request_status={set_request_status}
                             user_data={user_data}
+                            setUserData={setUserData}
                             chat_header_data={chat_header_data}
                             set_chat_header_data={set_chat_header_data}
                             chat_header_name={chat_header_name}
@@ -253,9 +282,16 @@ const Home=()=>{
                         />
                     </UserContext.Provider>
                     :
-                    <UserContext.Provider value={{user_data,chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about}}>
+                    <UserContext.Provider value={{contact_set,set_contact_set,chat,setChat,request_status,set_request_status,user_data, setUserData,chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about}}>
                         <RequestSendSection
+                            contact_set={contact_set}
+                            set_contact_set={set_contact_set}
+                            chat={chat}
+                            setChat={setChat}
+                            request_status={request_status}
+                            set_request_status={set_request_status}
                             user_data={user_data}
+                            setUserData={setUserData}
                             chat_header_data={chat_header_data}
                             set_chat_header_data={set_chat_header_data}
                             chat_header_name={chat_header_name}
@@ -266,8 +302,6 @@ const Home=()=>{
                             set_chat_header_about={set_chat_header_about}
                         />
                     </UserContext.Provider>}
-                    
-                    
                 </div>
                 <div className="col-sm-12 col-lg-2 info-hider">
                     <div style={{display:'flex',flexDirection:'column',height:'100vh'}}>
@@ -316,7 +350,7 @@ export default Home;
 
 const Contact=(props)=>{
 
-    const {chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about} = useContext(UserContext);
+    const {chat,setChat,user_data, setUserData,request_status,set_request_status,chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about} = useContext(UserContext);
 
     const fetch_selected_user_data=(id)=>{
         const token = localStorage.getItem('auth_token')
@@ -330,6 +364,36 @@ const Contact=(props)=>{
                 set_chat_header_name(res.data.name)
                 set_chat_header_image(res.data.image)
                 set_chat_header_about(res.data.about)
+                fetch_selected_user_request_status(res.data.id)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+    }
+
+    const fetch_selected_user_request_status=(id)=>{
+        const token = localStorage.getItem('auth_token')
+        const headers = {
+            "Authorization": `Token ${token}`
+        }
+        axios.get(`${config.baseurl}/send_request?req_from=${user_data.id}&req_to=${id}`,{headers:headers})
+            .then((res)=>{
+                if(res.data.error)
+                {
+                    set_request_status(true)
+                    setChat(false)
+                }
+                else{
+                    console.log(res)
+                    set_request_status(false)
+                    if(res.data.status==="accepted")
+                    {
+                        setChat(true)
+                    }
+                    else{
+                        setChat(false)
+                    }
+                }
             })
             .catch((error)=>{
                 console.log(error)
@@ -338,7 +402,7 @@ const Contact=(props)=>{
 
     return <>
         <div className="position-relative">
-            <div className="position-absolute end-0 bottom-50 translate-middle-y" style={{marginBottom:'0.5rem'}}>
+            <div className="position-absolute end-0 top-50 translate-middle-y" style={{marginTop:'1.5rem'}}>
                 <div className="badge bg-success small badge-my"><small><small>{props.id}</small></small></div>
             </div>
         </div>
@@ -598,15 +662,16 @@ const ChatSection=(props)=>{
 
 const RequestSendSection=()=>{
 
-    const {user_data,chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about} = useContext(UserContext);
+    const {chat,setChat,request_status,set_request_status,user_data,chat_header_data,set_chat_header_data,chat_header_name,set_chat_header_name,chat_header_image,set_chat_header_image,chat_header_about,set_chat_header_about} = useContext(UserContext);
 
     const send_request=()=>{
+        set_request_status(!request_status)
         const token = localStorage.getItem('auth_token')
         const headers = {
             "Authorization" : `Token ${token}`
         }
 
-        axios.post(`${config.baseurl}/send_request`,{'req_from':user_data.id,'req_to':chat_header_data.id},{headers:headers})
+        axios.post(`${config.baseurl}/send_request`,{'req_from':user_data.id,'req_to':chat_header_data.id,'status':'send'},{headers:headers})
         .then((res)=>{
             if(res.data.error)
             {
@@ -621,6 +686,34 @@ const RequestSendSection=()=>{
         })
     }
 
+    const cancel_request=()=>{
+        set_request_status(!request_status)
+        const token = localStorage.getItem('auth_token')
+        const headers = {
+            "Authorization" : `Token ${token}`
+        }
+
+        axios.delete(`${config.baseurl}/send_request`, {
+            data: {
+                req_from: user_data.id,
+                req_to: chat_header_data.id,
+                status: 'default'
+            },
+            headers: headers
+        })
+        .then((res) => {
+            if (res.data.error) {
+                alert('Request Failed.');
+            } else {
+                console.log(res.data);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+    }
+
     return <>
         <div style={{display:'flex',flexDirection:'column',height:'100vh'}}>
             <div className="">
@@ -630,7 +723,11 @@ const RequestSendSection=()=>{
                         <br /><p></p>
                         <div className="text-center">
                             <img className="profile-pic6 mt-5" src={chat_header_image?`${config.baseurl}${chat_header_image}`:`${empty_user}`} alt="no" /><br />
-                            <button onClick={send_request} className="mt-3 custom-btn-3-blue">Send Request</button>
+                            {request_status && request_status?
+                            <button onClick={(e)=>{send_request();}} className="mt-3 custom-btn-3-blue">Send Request</button>
+                            :
+                            <button onClick={(e)=>{cancel_request();}} className="mt-3 custom-btn-3-red">Cancel Request</button>
+                            }
                         </div>
                     </div> 
                 </div>
